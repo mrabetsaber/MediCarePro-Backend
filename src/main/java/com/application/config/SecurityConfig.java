@@ -56,6 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .permitAll().antMatchers("/addBookingSlots","/doctorlistbyemail/{email}","/slotDetails/{email}","/slotDetails","/slotDetailsWithUniqueDoctors","/slotDetailsWithUniqueSpecializations","/patientlistbydoctoremail/{email}")
                 .permitAll().antMatchers("/addPrescription","/doctorProfileDetails/{email}","/updatedoctor","/patientlistbydoctoremailanddate/{email}","/userlist","/getprescriptionbyname/{patientname}","/patientlistbyemail/{email}")
                 .permitAll().antMatchers("/patientlist","/gettotalpatients","/gettotalappointments","/gettotalprescriptions","/profileDetails/{email}","/updateuser","/bookNewAppointment")
+                .permitAll() .antMatchers("/patient/search", "/patient/patientlist", "/patient/searchPatientsByNumTel")
+                .permitAll() .antMatchers("/appointement/addAppointement", "/patient/patientlist", "/patient/searchPatientsByNumTel","/patient/verifyPatient")
                 .permitAll().anyRequest().fullyAuthenticated()
                 .and().exceptionHandling()
                 .accessDeniedHandler((request, response, accessDeniedException) -> {

@@ -1,24 +1,54 @@
 package com.application.model;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Patient {
 
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String nom;
     private String prenom ;
     private String region ;
     private String numTel; 
+    @Temporal(TemporalType.DATE)
     private Calendar dateNaissance;
     private String profession; 
     private String couvertureSocial ;
     private String gender ;
+    private String numDossier;
     
+    public String getNumDossier() {
+		return numDossier;
+	}
+	public void setNumDossier(String numDossier) {
+		this.numDossier = numDossier;
+	}
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+	private List<Appointments> appointments;
+    
+	public List<Appointments> getAppointments() {
+		return appointments;
+	}
+	public void setAppointments(List<Appointments> appointments) {
+		this.appointments = appointments;
+	}
 	public Patient() {
 		super();
 	}

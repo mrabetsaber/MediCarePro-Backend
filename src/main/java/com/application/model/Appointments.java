@@ -1,9 +1,18 @@
 package com.application.model;
 
+import java.time.LocalDateTime;
+import java.util.Calendar;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Appointments 
@@ -11,42 +20,13 @@ public class Appointments
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private String patientid;
-	private String patientname;
-	private String email;
-	private String doctorname;
-	private String specialization;
-	private String date;
-	private String age;
-	private String gender;
-	private String problem;
-	private String slot;
-	private String appointmentstatus;
-	private String admissionstatus;
+	private Calendar dateCreation;
+	private LocalDateTime timestamp;
+	  @ManyToOne(fetch = FetchType.LAZY)
+	    @JoinColumn(name = "patient_id")
+	    private Patient patient;
+
 	
-	public Appointments() 
-	{
-		super();
-	}
-
-	public Appointments(int id,String patientid, String patientname, String email, String doctorname, String specialization, String date, String age, String gender, String problem, String slot, String appointmentstatus, String admissionstatus) 
-	{
-		super();
-		this.id = id;
-		this.patientid = patientid;
-		this.patientname = patientname;
-		this.email = email;
-		this.doctorname = doctorname;
-		this.specialization = specialization;
-		this.date = date;
-		this.age = age;
-		this.gender = gender;
-		this.problem = problem;
-		this.slot = slot;
-		this.appointmentstatus = appointmentstatus;
-		this.admissionstatus = admissionstatus;
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -54,101 +34,34 @@ public class Appointments
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public String getPatientid() {
-		return patientid;
+
+	public Calendar getDateCreation() {
+		return dateCreation;
 	}
 
-	public void setPatientid(String patientid) {
-		this.patientid = patientid;
+	public void setDateCreation(Calendar dateCreation) {
+		this.dateCreation = dateCreation;
 	}
 
-	public String getPatientname() {
-		return patientname;
+	public LocalDateTime getTimestamp() {
+		return timestamp;
 	}
 
-	public void setPatientname(String patientname) {
-		this.patientname = patientname;
+	public void setTimestamp(LocalDateTime timestamp) {
+		this.timestamp = timestamp;
 	}
 
-	public String getEmail() {
-		return email;
+	public Patient getPatient() {
+		return patient;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setPatient(Patient patient) {
+		this.patient = patient;
 	}
 
-	public String getDoctorname() {
-		return doctorname;
-	}
-
-	public void setDoctorname(String doctorname) {
-		this.doctorname = doctorname;
-	}
-
-	public String getSpecialization() {
-		return specialization;
-	}
-
-	public void setSpecialization(String specialization) {
-		this.specialization = specialization;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-	public String getAge() {
-		return age;
-	}
-
-	public void setAge(String age) {
-		this.age = age;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getProblem() {
-		return problem;
-	}
-
-	public void setProblem(String problem) {
-		this.problem = problem;
-	}
-
-	public String getSlot() {
-		return slot;
-	}
-
-	public void setSlot(String slot) {
-		this.slot = slot;
-	}
-
-	public String getAppointmentstatus() {
-		return appointmentstatus;
-	}
-
-	public void setAppointmentstatus(String appointmentstatus) {
-		this.appointmentstatus = appointmentstatus;
-	}
-
-	public String getAdmissionstatus() {
-		return admissionstatus;
-	}
-
-	public void setAdmissionstatus(String admissionstatus) {
-		this.admissionstatus = admissionstatus;
+	public Appointments() 
+	{
+		super();
 	}
 
 }

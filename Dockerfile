@@ -1,14 +1,9 @@
-# Use the official OpenJDK image as the base image
-FROM openjdk:11-jre-slim
+FROM maven:3.8.5-openjdk-17 AS build
+COPY src /home/app/src
+COPY pom.xml /home/app
+RUN mvn -f /home/app/pom.xml clean package -DskipTests
 
-# Set the working directory inside the container
-WORKDIR /app
-
-# Copy the compiled Spring Boot application JAR file into the container
-COPY target/your-application.jar /app/app.jar
-
-# Expose the port that your Spring Boot application listens on
-EXPOSE 8080
-
-# Specify the command to run your Spring Boot application
-CMD ["java", "-jar", "app.jar"]
+FROM openjdk:17-alpine  AS production
+ARG JAR_FILE=/home/app/target/MediCarePro-Backend-0.0.1-SNAPSHOT.jar
+COPY --from=build ${JAR_FILE} application.jar
+ENTRYPOINT ["java", "-jar", "application.jar"]
