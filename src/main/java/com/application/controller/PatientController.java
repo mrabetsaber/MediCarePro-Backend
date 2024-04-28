@@ -25,9 +25,9 @@ public class PatientController {
 	@Autowired
 	private PatientService patientService;
 	@PostMapping("/addPatient")
-	public String addNewPatient(@RequestBody Patient slots) throws Exception
+	public String addNewPatient(@RequestBody PatientDTO patientDTO) throws Exception
 	{
-		patientService.savePrescriptions(slots);
+		patientService.savePatient(patientDTO);
 		return "modified successfully !!!";
 	}
 	
@@ -40,9 +40,9 @@ public class PatientController {
 	}
 	
 	 @PostMapping("/search")
-	    public List<Patient> searchPatientsByObject(@RequestBody Patient patient) {
+	    public List<Patient> searchPatientsByObject(@RequestBody PatientDTO   patientDto) {
 	        // Call the service method passing the patient object
-	        return patientService.searchPatientsByObject(patient);
+	        return patientService.searchPatientsByObject(patientDto);
 	    }
 	 
 	 @GetMapping("/searchPatientsByNumTel")

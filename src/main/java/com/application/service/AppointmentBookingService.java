@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Random;
 
-import com.application.model.Appointments;
+import com.application.model.Appointment;
 import com.application.model.Slots;
 import com.application.repository.AppointmentsRepository;
 import com.application.repository.SlotBookingRepository;

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.application.model.Appointments;
+import com.application.model.Appointment;
 import com.application.model.Patient;
 import com.application.service.AppointmentsService;
 import com.application.service.PatientService;
@@ -24,7 +24,7 @@ public class AppointementController {
 	@Autowired
 	private PatientService patientService;
 	@PostMapping("/addAppointement")
-	public String addNewPatient(@RequestBody Appointments appointement) throws Exception
+	public String addNewPatient(@RequestBody Appointment appointement) throws Exception
 	{
 		Patient patient = new Patient();
 		if(appointement.getPatient().getId()!=null) {
@@ -32,7 +32,7 @@ public class AppointementController {
 			 patient = patientService.findById(appointement.getPatient().getId());
 		}
 		else {
-			patient=	patientService.savePrescriptions(appointement.getPatient());
+			//patient=	patientService.savePatient(appointement.getPatient());
 		}
 		
 		

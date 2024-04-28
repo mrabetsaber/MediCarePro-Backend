@@ -2,6 +2,7 @@ package com.application.model;
 
 import java.time.LocalDateTime;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,22 +12,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Appointments 
+public class Appointment 
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private Calendar dateCreation;
 	private LocalDateTime timestamp;
-	  @ManyToOne(fetch = FetchType.LAZY)
-	    @JoinColumn(name = "patient_id")
-	    private Patient patient;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "patient_id")
+	private Patient patient;
 
-	
+	@OneToMany(mappedBy = "appointment", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnore
+	private List<Operation> operations;
+	public List<Operation> getOperations() {
+		return operations;
+	}
+
+	public void setOperations(List<Operation> operations) {
+		this.operations = operations;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -59,7 +71,7 @@ public class Appointments
 		this.patient = patient;
 	}
 
-	public Appointments() 
+	public Appointment() 
 	{
 		super();
 	}

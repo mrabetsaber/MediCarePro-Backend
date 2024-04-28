@@ -1,6 +1,6 @@
 package com.application.repository;
 
-import com.application.model.Appointments;
+import com.application.model.Appointment;
 import com.application.model.Patient;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-public interface AppointmentsRepository extends CrudRepository<Appointments, Integer>
+public interface AppointmentsRepository extends CrudRepository<Appointment, Integer>
 {
 	
 //	public List<Appointments> findByEmail(String email);

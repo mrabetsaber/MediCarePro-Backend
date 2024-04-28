@@ -2,18 +2,30 @@ package com.application.dto;
 
 import java.time.LocalDateTime;
 import java.util.Calendar;
+import java.util.List;
 
 public class AppointmentDTO {
     private int id;
     private Calendar dateCreation;
     private LocalDateTime timestamp;
-    private PatientDTO patient; // Representing patient information in the appointment
-
+    private Long patientId; // Representing patient information in the appointment
+    private List<OperationDto> operations;
     // Constructors
     public AppointmentDTO() {
     }
 
-    public int getId() {
+ 
+	public List<OperationDto> getOperations() {
+		return operations;
+	}
+
+
+	public void setOperations(List<OperationDto> operations) {
+		this.operations = operations;
+	}
+
+
+	public int getId() {
 		return id;
 	}
 
@@ -37,20 +49,21 @@ public class AppointmentDTO {
 		this.timestamp = timestamp;
 	}
 
-	public PatientDTO getPatient() {
-		return patient;
-	}
-
-	public void setPatient(PatientDTO patient) {
-		this.patient = patient;
-	}
+	
 
 	public AppointmentDTO(int id, Calendar dateCreation, LocalDateTime timestamp, PatientDTO patient) {
         this.id = id;
         this.dateCreation = dateCreation;
         this.timestamp = timestamp;
-        this.patient = patient;
     }
+
+	public Long getPatientId() {
+		return patientId;
+	}
+
+	public void setPatientId(Long patientId) {
+		this.patientId = patientId;
+	}
 
     // Getters and setters
     // You can generate getters and setters using your IDE or manually implement them

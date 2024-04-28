@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.application.model.Appointments;
+import com.application.model.Appointment;
 import com.application.model.Doctor;
 import com.application.model.Prescription;
 import com.application.model.Slots;

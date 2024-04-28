@@ -32,21 +32,30 @@ public class Patient {
     private String couvertureSocial ;
     private String gender ;
     private String numDossier;
-    
-    public String getNumDossier() {
-		return numDossier;
-	}
-	public void setNumDossier(String numDossier) {
-		this.numDossier = numDossier;
-	}
 	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-	private List<Appointments> appointments;
+	private List<Appointment> appointments;
+	
+	 public String getNumDossier() {
+			return numDossier;
+		}
+		public void setNumDossier(String numDossier) {
+			this.numDossier = numDossier;
+		}
+	
+	
+	
+	
+	
+	
+	
+	
     
-	public List<Appointments> getAppointments() {
+
+	public List<Appointment> getAppointments() {
 		return appointments;
 	}
-	public void setAppointments(List<Appointments> appointments) {
+	public void setAppointments(List<Appointment> appointments) {
 		this.appointments = appointments;
 	}
 	public Patient() {
